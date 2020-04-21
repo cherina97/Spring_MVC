@@ -1,5 +1,8 @@
-package com.example.SpringMVC;
+package com.example.SpringMVC.controllers;
 
+import com.example.SpringMVC.dtos.ParticipantDto;
+import com.example.SpringMVC.entities.Participant;
+import com.example.SpringMVC.services.ParticipantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,8 +33,13 @@ public class ParticipantController {
     @PostMapping("/create")
     public String createNew (HttpServletRequest request, @ModelAttribute ParticipantDto participantDto){
         participantService.create(participantDto);
+        request.setAttribute("name", participantDto.getName());
+        request.setAttribute("email", participantDto.getEmail());
+        request.setAttribute("level", participantDto.getLevel());
+        request.setAttribute("primarySkill", participantDto.getPrimarySkill());
+        request.setAttribute("photoId", participantDto.getUserPhotoId());
         request.setAttribute("participants", participantService.readAll());
-        return "home";
+        return "showInfo";
     }
 
     @GetMapping("/delete")

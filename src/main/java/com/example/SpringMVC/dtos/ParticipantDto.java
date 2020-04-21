@@ -1,11 +1,12 @@
-package com.example.SpringMVC;
+package com.example.SpringMVC.dtos;
 
 
 public class ParticipantDto {
     private String name;
     private String email;
-    private Integer level;
+    private int level;
     private String primarySkill;
+    private String userPhotoId;
 
     public String getName() {
         return name;
@@ -23,11 +24,11 @@ public class ParticipantDto {
         this.email = email;
     }
 
-    public Integer getLevel() {
+    public int getLevel() {
         return level;
     }
 
-    public void setLevel(Integer level) {
+    public void setLevel(int level) {
         this.level = level;
     }
 
@@ -37,5 +38,13 @@ public class ParticipantDto {
 
     public void setPrimarySkill(String primarySkill) {
         this.primarySkill = primarySkill;
+    }
+
+    public String getUserPhotoId() {
+        return userPhotoId;
+    }
+
+    public void setUserPhotoId(String userPhotoId) {
+        this.userPhotoId = userPhotoId;
     }
 }

@@ -1,6 +1,17 @@
 <!DOCTYPE html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
+
+<head>
+    <title>Conference</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+</head>
+
 <body>
 <jsp:include page="header.jsp"></jsp:include>
 
@@ -8,6 +19,14 @@
 
 <div class="container">
     <form action="${pageContext.request.contextPath}/create" method="POST">
+
+        <img src="https://vectorified.com/images/default-image-icon-7.jpg" id="userPhoto" width="200px">
+
+        <div class="form-group">
+            <label for="photo">User photo</label>
+            <input id="photo" type="file" />
+        </div>
+        <input type="hidden" value="" class="form-control" id="photo-id" name="userPhotoId">
 
         <div class="form-group">
             <label for="name">Name:</label>
@@ -37,18 +56,10 @@
 
 </div>
 
-
+<script src="${pageContext.request.contextPath}/js/userPhoto.js"></script>
 
 
 </body>
-<head>
-    <title>Conference</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-</head>
 </html>
 

@@ -1,4 +1,4 @@
-package com.example.SpringMVC;
+package com.example.SpringMVC.entities;
 
 import javax.persistence.*;
 
@@ -14,6 +14,8 @@ public class Participant {
     private int level;
     @Column(name = "primary_skill")
     private String primarySkill;
+    @Column(name = "user_photo_id")
+    private String userPhotoId;
 
     public Participant(String name, String email, int level, String primarySkill) {
         this.name = name;
@@ -63,5 +65,13 @@ public class Participant {
 
     public void setPrimarySkill(String primarySkill) {
         this.primarySkill = primarySkill;
+    }
+
+    public String getUserPhotoId() {
+        return userPhotoId;
+    }
+
+    public void setUserPhotoId(String userPhotoId) {
+        this.userPhotoId = userPhotoId;
     }
 }

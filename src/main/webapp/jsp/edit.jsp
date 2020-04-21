@@ -20,6 +20,14 @@
     <form action="${pageContext.request.contextPath}/save" method="POST">
         <input type="hidden" value="${participant.id}" class="form-control" id="id" name="id">
 
+        <img src="/Conference/user-photo/download/${participant.userPhotoId}" width="200px" id="userPhoto">
+
+        <div class="form-group">
+            <label for="photo">User photo</label>
+            <input id="photo" type="file" />
+        </div>
+        <input type="hidden" value="" class="form-control" id="photo-id" name="userPhotoId">
+
         <div class="form-group">
             <label for="name">Name:</label>
             <input type="text" class="form-control" id="name" name="name" value="${participant.name}">
@@ -48,6 +56,6 @@
 
 </div>
 
-
+<script src="${pageContext.request.contextPath}/js/userPhoto.js"></script>
 </body>
 </html>
