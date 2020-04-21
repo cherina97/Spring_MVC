@@ -19,29 +19,25 @@ public class ParticipantController {
     @GetMapping("/")
     public String showAll(HttpServletRequest request){
         request.setAttribute("participants", participantService.readAll());
-        request.setAttribute("mode", "VIEW");
-        return "index";
+        return "home";
     }
 
     @GetMapping("/addNew")
     public String addNew (HttpServletRequest request){
-        request.setAttribute("mode", "CREATE");
-        return "index";
+        return "create";
     }
 
     @PostMapping("/create")
     public String createNew (HttpServletRequest request, @ModelAttribute ParticipantDto participantDto){
         participantService.create(participantDto);
         request.setAttribute("participants", participantService.readAll());
-        request.setAttribute("mode", "VIEW");
-        return "index";
+        return "home";
     }
 
     @GetMapping("/delete")
     public String deleteById(HttpServletRequest request, @RequestParam(name = "id") int participantId){
         participantService.deleteById(participantId);
         request.setAttribute("participants", participantService.readAll());
-        request.setAttribute("mode", "VIEW");
         return "redirect:/";
     }
 
@@ -50,17 +46,15 @@ public class ParticipantController {
         Optional<Participant> participantMaybe = participantService.getById(participantId);
         if (participantMaybe.isPresent()){
             request.setAttribute("participant", participantMaybe.get());
-            request.setAttribute("mode", "EDIT");
-            return "index";
+            return "edit";
         }
-        return "NoParticipantExist";
+        return "noParticipantExist";
     }
 
     @PostMapping("/save")
     public String saveChanges (HttpServletRequest request, @ModelAttribute Participant participant){
         participantService.createForUpdate(participant);
         request.setAttribute("participants", participantService.readAll());
-        request.setAttribute("mode", "VIEW");
-        return "index";
+        return "redirect:/";
     }
 }
