@@ -1,5 +1,8 @@
-package com.example.SpringMVC;
+package com.example.SpringMVC.controllers;
 
+import com.example.SpringMVC.dtos.ParticipantDto;
+import com.example.SpringMVC.entities.Participant;
+import com.example.SpringMVC.services.ParticipantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,29 +22,30 @@ public class ParticipantController {
     @GetMapping("/")
     public String showAll(HttpServletRequest request){
         request.setAttribute("participants", participantService.readAll());
-        request.setAttribute("mode", "VIEW");
-        return "index";
+        return "home";
     }
 
     @GetMapping("/addNew")
     public String addNew (HttpServletRequest request){
-        request.setAttribute("mode", "CREATE");
-        return "index";
+        return "create";
     }
 
     @PostMapping("/create")
     public String createNew (HttpServletRequest request, @ModelAttribute ParticipantDto participantDto){
         participantService.create(participantDto);
+        request.setAttribute("name", participantDto.getName());
+        request.setAttribute("email", participantDto.getEmail());
+        request.setAttribute("level", participantDto.getLevel());
+        request.setAttribute("primarySkill", participantDto.getPrimarySkill());
+        request.setAttribute("photoId", participantDto.getUserPhotoId());
         request.setAttribute("participants", participantService.readAll());
-        request.setAttribute("mode", "VIEW");
-        return "index";
+        return "showInfo";
     }
 
     @GetMapping("/delete")
     public String deleteById(HttpServletRequest request, @RequestParam(name = "id") int participantId){
         participantService.deleteById(participantId);
         request.setAttribute("participants", participantService.readAll());
-        request.setAttribute("mode", "VIEW");
         return "redirect:/";
     }
 
@@ -50,17 +54,15 @@ public class ParticipantController {
         Optional<Participant> participantMaybe = participantService.getById(participantId);
         if (participantMaybe.isPresent()){
             request.setAttribute("participant", participantMaybe.get());
-            request.setAttribute("mode", "EDIT");
-            return "index";
+            return "edit";
         }
-        return "NoParticipantExist";
+        return "noParticipantExist";
     }
 
     @PostMapping("/save")
     public String saveChanges (HttpServletRequest request, @ModelAttribute Participant participant){
         participantService.createForUpdate(participant);
         request.setAttribute("participants", participantService.readAll());
-        request.setAttribute("mode", "VIEW");
-        return "index";
+        return "redirect:/";
     }
 }

@@ -1,4 +1,4 @@
-package com.example.SpringMVC;
+package com.example.SpringMVC.entities;
 
 import javax.persistence.*;
 
@@ -8,12 +8,14 @@ public class Participant {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private int id;
     private String name;
     private String email;
-    private Integer level;
+    private int level;
     @Column(name = "primary_skill")
     private String primarySkill;
+    @Column(name = "user_photo_id")
+    private String userPhotoId;
 
     public Participant(String name, String email, int level, String primarySkill) {
         this.name = name;
@@ -25,11 +27,11 @@ public class Participant {
     public Participant() {
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -49,11 +51,11 @@ public class Participant {
         this.email = email;
     }
 
-    public Integer getLevel() {
+    public int getLevel() {
         return level;
     }
 
-    public void setLevel(Integer level) {
+    public void setLevel(int level) {
         this.level = level;
     }
 
@@ -63,5 +65,13 @@ public class Participant {
 
     public void setPrimarySkill(String primarySkill) {
         this.primarySkill = primarySkill;
+    }
+
+    public String getUserPhotoId() {
+        return userPhotoId;
+    }
+
+    public void setUserPhotoId(String userPhotoId) {
+        this.userPhotoId = userPhotoId;
     }
 }
